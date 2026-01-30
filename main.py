@@ -35,7 +35,7 @@ while running:
 
     npcs = [npc1, npc2]
 
-    # Collisioncheck
+    # Check for collisions between player and NPCs (game over condition)
     for npc in npcs:
         if player.check_collision(npc):
             print("Game Over! You were caught by an enemy!")
