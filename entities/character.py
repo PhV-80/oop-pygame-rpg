@@ -11,20 +11,26 @@ class Character(Entity):
     def update(self):
         keys = pygame.key.get_pressed()
 
-        while keys[pygame.K_w] or keys[pygame.K_UP]:
+        if keys[pygame.K_w] or keys[pygame.K_UP]:
             self.y -= self.speed
 
-        while keys[pygame.K_s] or keys[pygame.K_DOWN]:
+        if keys[pygame.K_s] or keys[pygame.K_DOWN]:
             self.y += self.speed
 
-        while keys[pygame.K_a] or keys[pygame.K_LEFT]:
+        if keys[pygame.K_a] or keys[pygame.K_LEFT]:
             self.x -= self.speed
 
-        while keys[pygame.K_d] or keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
             self.x += self.speed
 
-        if self.x < 0 or self.x > WINDOW_WIDTH - self.width:
+        if self.x < 0:
+            self.x = 0
+
+        if self.x > WINDOW_WIDTH - self.width:
             self.x = WINDOW_WIDTH - self.width
 
-        if self.y < 0 or self.y > WINDOW_HEIGHT - self.height:
+        if self.y < 0:
+            self.y = 0
+
+        if self.y > WINDOW_HEIGHT - self.height:
             self.y = WINDOW_HEIGHT - self.height
