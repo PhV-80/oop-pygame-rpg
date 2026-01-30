@@ -13,9 +13,7 @@ class NPC(Entity):
         self.health = 100  # Hit points
 
     def update(self, target_x: int, target_y: int):
-        """Update NPC state. AI logic will be added in Phase 1.3 Part 2."""
-        self.target_x = target_x
-        self.target_y = target_y
+        """Update NPC state. Chases the target position (player)."""
 
         if target_x < self.x:
             self.x -= self.speed
