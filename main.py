@@ -3,6 +3,7 @@ import sys
 
 from config import *
 from entities.character import Character
+from entities.npc import NPC
 
 # PyGame init
 pygame.init()
@@ -12,6 +13,10 @@ clock = pygame.time.Clock()
 
 # Player create (green rect, starting in the Middle)
 player = Character(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2, 40, 40, COLOR_PLAYER)
+
+# NPC create (red rect)
+npc1 = NPC(100, 100, 30, 30, COLOR_NPC)
+npc2 = NPC(600, 400, 30, 30, COLOR_NPC)
 
 # Game-Loop
 running = True
@@ -25,10 +30,14 @@ while running:
 
     # Update
     player.update()
+    npc1.update()
+    npc2.update()
 
     # Draw
     screen.fill(COLOR_BG)
     player.draw(screen)
+    npc1.draw(screen)
+    npc2.draw(screen)
     pygame.display.flip()
 
 pygame.quit()
