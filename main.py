@@ -33,6 +33,15 @@ while running:
     npc1.update(player.x, player.y)
     npc2.update(player.x, player.y)
 
+    npcs = [npc1, npc2]
+
+    # Check for collisions between player and NPCs (game over condition)
+    for npc in npcs:
+        if player.check_collision(npc):
+            print("Game Over! You were caught by an enemy!")
+            running = False
+            break
+
     # Render frame
     screen.fill(COLOR_BG)
     player.draw(screen)
