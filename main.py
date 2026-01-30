@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 # Create player character (green rectangle, spawns at window center)
 player = Character(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2, 40, 40, COLOR_PLAYER)
 
-# Create NPCs (red rectangles, static for now)
+# Create NPCs (red rectangles, will chase player)
 npc1 = NPC(100, 100, 30, 30, COLOR_NPC)
 npc2 = NPC(600, 400, 30, 30, COLOR_NPC)
 
@@ -30,8 +30,8 @@ while running:
 
     # Update game state
     player.update()
-    npc1.update()
-    npc2.update()
+    npc1.update(player.x, player.y)
+    npc2.update(player.x, player.y)
 
     # Render frame
     screen.fill(COLOR_BG)
