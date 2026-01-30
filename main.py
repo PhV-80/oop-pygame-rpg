@@ -30,8 +30,8 @@ while running:
 
     # Update game state
     player.update()
-    npc1.update()
-    npc2.update()
+    npc1.update(player.x, player.y)
+    npc2.update(player.x, player.y)
 
     # Render frame
     screen.fill(COLOR_BG)
