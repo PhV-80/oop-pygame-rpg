@@ -10,6 +10,7 @@ class Character(Entity):
     def __init__(self, x: int, y: int, width: int, height: int, color):
         super().__init__(x, y, width, height, color)
         self.speed = 5  # Movement speed in pixels per frame
+        self.health = 100
 
     def update(self):
         """Handle player movement and enforce window boundaries."""
