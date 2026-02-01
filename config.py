@@ -1,6 +1,5 @@
 """Game configuration with encapsulation."""
 
-
 class Config:
     """Game configuration class with getter methods."""
 
