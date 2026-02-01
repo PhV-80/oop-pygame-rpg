@@ -1,2 +1,24 @@
-/.idea/
-/.venv/
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# PyCharm - lokale Sachen ignorieren
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/shelf/
+.idea/dictionaries/
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+
+# PyCharm - Shared Settings committen (bleiben drin)
+# .idea/runConfigurations/
+# .idea/inspectionProfiles/
+# .idea/codeStyles/
+# .idea/vcs.xml
+# .idea/modules.xml
+# .idea/misc.xml (Interpreter-Info)
