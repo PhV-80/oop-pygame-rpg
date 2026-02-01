@@ -16,6 +16,9 @@ class Entity:
 
         self.set_x(width)
         self.set_y(height)
+        self.set_color(color)
+        self.set_health(health)
+        self.set_alive(alive)
 
     def get_x(self) -> int:
         return self.__x
@@ -46,6 +49,20 @@ class Entity:
         if 0 <= value <= WINDOW_WIDTH - self.__width:
             self.__y = value
 
+    def set_width(self, value: int):
+        self.__width = value
+
+    def set_height(self, value: int):
+        self.__height = value
+
+    def set_color(self, value: tuple[int, int, int]):
+        self.__color = value
+
+    def set_health(self, value: int):
+        self.__health = value
+
+    def set_alive(self, value: bool):
+        self.__alive = value
 
     def update(self):
         """Call every Frame. Override for custom logic."""
@@ -53,7 +70,7 @@ class Entity:
 
     def draw(self, screen):
         """Draws Entity as Rect."""
-        pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(screen, self.set_color(), (self.x, self.y, self.width, self.height))
 
     def get_rect(self):
         """Returns a rectangle for collision checks."""

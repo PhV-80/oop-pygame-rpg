@@ -30,8 +30,8 @@ while running:
 
     # Update game state
     player.update()
-    npc1.update(player.x, player.y)
-    npc2.update(player.x, player.y)
+    npc1.update(player.get_x(), player.get_y())
+    npc2.update(player.get_x(), player.get_y())
 
     npcs = [npc1, npc2]
 

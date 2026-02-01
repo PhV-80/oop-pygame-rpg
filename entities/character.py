@@ -17,26 +17,26 @@ class Character(Entity):
 
         # Movement controls (WASD or Arrow keys)
         if keys[pygame.K_w] or keys[pygame.K_UP]:
-            self.y -= self.speed
+            self.set_y(self.get_y() - self.speed)
 
         if keys[pygame.K_s] or keys[pygame.K_DOWN]:
-            self.y += self.speed
+            self.set_y(self.get_y() + self.speed)
 
         if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-            self.x -= self.speed
+            self.set_x(self.get_x() - self.speed)
 
         if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-            self.x += self.speed
+            self.set_x(self.get_x() + self.speed)
 
         # Boundary checks (prevent player from leaving the window)
-        if self.x < 0:
-            self.x = 0
+        if self.get_x() < 0:
+            self.set_x(0)
 
-        if self.x > WINDOW_WIDTH - self.width:
-            self.x = WINDOW_WIDTH - self.width
+        if self.get_x() > WINDOW_WIDTH:
+            self.set_x(WINDOW_WIDTH)
 
-        if self.y < 0:
-            self.y = 0
+        if self.get_y() < 0:
+            self.set_y(0)
 
-        if self.y > WINDOW_HEIGHT - self.height:
-            self.y = WINDOW_HEIGHT - self.height
+        if self.get_y() > WINDOW_HEIGHT:
+            self.set_y(WINDOW_HEIGHT)
