@@ -1,60 +1,67 @@
 import pygame
-import sys
-
-from config import *
+from config import config
 from entities.character import Character
 from entities.npc import NPC
 
-# Initialize PyGame
+# Initialize Pygame
 pygame.init()
-screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+
+# Create window
+screen = pygame.display.set_mode((config.get_window_width(), config.get_window_height()))
 pygame.display.set_caption("OOP PyGame RPG")
+
+# Create clock for FPS
 clock = pygame.time.Clock()
 
+# Create font for UI (before game loop)
 font = pygame.font.Font(None, 36)
 
-# Create player character (green rectangle, spawns at window center)
-player = Character(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2, 40, 40, COLOR_PLAYER)
+# Create player
+player = Character(50, 50, 50, 50, config.get_color_green())
 
-# Create NPCs (red rectangles, will chase player)
-npc1 = NPC(100, 100, 30, 30, COLOR_NPC)
-npc2 = NPC(600, 400, 30, 30, COLOR_NPC)
+# Create NPCs
+npc1 = NPC(300, 200, 50, 50, config.get_color_red())
+npc2 = NPC(500, 400, 50, 50, config.get_color_red())
 
-# Main game loop
+# Game loop
 running = True
-while running:
-    clock.tick(FPS)  # Maintain target framerate (60 FPS)
+game_over = False
 
+while running:
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # Update game state
-    player.update()
-    npc1.update(player.x, player.y)
-    npc2.update(player.x, player.y)
+    if not game_over:
+        # Update entities
+        player.update()
+        npc1.update(player.get_x(), player.get_y())
+        npc2.update(player.get_x(), player.get_y())
 
-    npcs = [npc1, npc2]
-
-    # Check for collisions between player and NPCs (game over condition)
-    for npc in npcs:
-        if player.check_collision(npc):
-            print("Game Over! You were caught by an enemy!")
-            running = False
-            break
+        # Check collisions (using getter methods)
+        if player.check_collision(npc1) or player.check_collision(npc2):
+            game_over = True
+            print("GAME OVER - Enemy caught you!")
 
     # Render frame
-    screen.fill(COLOR_BG)
-    player.draw(screen)
-    npc1.draw(screen)
-    npc2.draw(screen)
+    screen.fill(config.get_color_black())
 
-    text_surface = font.render(f"HP: {player.health}", True, COLOR_WHITE)
-    screen.blit(text_surface, (10, 10))
+    if not game_over:
+        player.draw(screen)
+        npc1.draw(screen)
+        npc2.draw(screen)
 
-    pygame.display.flip()  # Update display
+        # UI: Health display (using getter method)
+        health_text = font.render(f"HP: {player.get_health()}", True, config.get_color_white())
+        screen.blit(health_text, (10, 10))
+    else:
+        # Game Over screen
+        game_over_text = font.render("GAME OVER", True, config.get_color_white())
+        text_rect = game_over_text.get_rect(center=(config.get_window_width() // 2, config.get_window_height() // 2))
+        screen.blit(game_over_text, text_rect)
 
-# Cleanup
+    pygame.display.flip()
+    clock.tick(config.get_fps())
+
 pygame.quit()
-sys.exit()
