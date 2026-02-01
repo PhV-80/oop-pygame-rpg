@@ -1,17 +1,49 @@
-### Main configuration
-# Default UI-Configuration
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
-FPS = 60
+"""Game configuration with encapsulation."""
 
-# Default Colors (RGB)
-COLOR_BG = (20, 20, 30)     # darkblue
-COLOR_PLAYER = (0, 255, 0)  # green
-COLOR_NPC = (255, 0, 0)     # red
-COLOR_WHITE = (255, 255, 255) # white
 
-# Default Attributes
-HEALTH_PLAYER = 100
-HEALTH_NPC = 100
-DAMAGE_PLAYER = 15
-DAMAGE_NPC = 10
+class Config:
+    """Game configuration class with getter methods."""
+
+    def __init__(self):
+        """Initialize configuration values."""
+        self.window_width = 800
+        self.window_height = 600
+        self.fps = 60
+        self.color_black = (0, 0, 0)
+        self.color_white = (255, 255, 255)
+        self.color_red = (255, 0, 0)
+        self.color_green = (0, 255, 0)
+
+    # Getter methods for window settings
+    def get_window_width(self) -> int:
+        """Get window width in pixels."""
+        return self.window_width
+
+    def get_window_height(self) -> int:
+        """Get window height in pixels."""
+        return self.window_height
+
+    def get_fps(self) -> int:
+        """Get frames per second limit."""
+        return self.fps
+
+    # Getter methods for colors
+    def get_color_black(self) -> tuple:
+        """Get black color RGB tuple."""
+        return self.color_black
+
+    def get_color_white(self) -> tuple:
+        """Get white color RGB tuple."""
+        return self.color_white
+
+    def get_color_red(self) -> tuple:
+        """Get red color RGB tuple."""
+        return self.color_red
+
+    def get_color_green(self) -> tuple:
+        """Get green color RGB tuple."""
+        return self.color_green
+
+
+# Singleton instance
+config = Config()

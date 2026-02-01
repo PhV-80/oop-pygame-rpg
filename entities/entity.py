@@ -1,84 +1,94 @@
 import pygame
 
-from config import *
 
 class Entity:
-    """Base-Class for all Gameobjects (Player, NPCs, etc.)"""
+    """Base class for all game objects with encapsulated attributes."""
 
-    def __init__(self, x: int, y: int, width: int, height: int, color: tuple[int, int, int], health: int, alive: bool):
-        self.__x = x
-        self.__y = y
-        self.__width = width
-        self.__height = height
-        self.__color = color
-        self.__health = health
-        self.__alive = alive
+    def __init__(self, x: int, y: int, width: int, height: int, color: tuple):
+        """
+        Initialize an entity with position, size and color.
 
-        self.set_x(width)
-        self.set_y(height)
-        self.set_color(color)
-        self.set_health(health)
-        self.set_alive(alive)
+        Args:
+            x: Horizontal position (pixels)
+            y: Vertical position (pixels)
+            width: Width of the entity (pixels)
+            height: Height of the entity (pixels)
+            color: RGB tuple (r, g, b)
+        """
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.color = color
 
+    # Getter methods
     def get_x(self) -> int:
-        return self.__x
+        """Get horizontal position."""
+        return self.x
 
     def get_y(self) -> int:
-        return self.__y
+        """Get vertical position."""
+        return self.y
 
     def get_width(self) -> int:
-        return self.__width
+        """Get entity width."""
+        return self.width
 
     def get_height(self) -> int:
-        return self.__height
+        """Get entity height."""
+        return self.height
 
-    def get_color(self) -> tuple[int, int, int]:
-        return self.__color
+    def get_color(self) -> tuple:
+        """Get entity color."""
+        return self.color
 
-    def get_health(self) -> int:
-        return self.__health
+    # Setter methods
+    def set_x(self, x: int):
+        """Set horizontal position."""
+        self.x = x
 
-    def get_alive(self) -> bool:
-        return self.__alive
+    def set_y(self, y: int):
+        """Set vertical position."""
+        self.y = y
 
-    def set_x(self, value: int):
-        if 0 <= value <= WINDOW_WIDTH - self.__width:
-            self.__x = value
+    def set_width(self, width: int):
+        """Set entity width."""
+        self.width = width
 
-    def set_y(self, value: int):
-        if 0 <= value <= WINDOW_WIDTH - self.__width:
-            self.__y = value
+    def set_height(self, height: int):
+        """Set entity height."""
+        self.height = height
 
-    def set_width(self, value: int):
-        self.__width = value
-
-    def set_height(self, value: int):
-        self.__height = value
-
-    def set_color(self, value: tuple[int, int, int]):
-        self.__color = value
-
-    def set_health(self, value: int):
-        self.__health = value
-
-    def set_alive(self, value: bool):
-        self.__alive = value
+    def set_color(self, color: tuple):
+        """Set entity color."""
+        self.color = color
 
     def update(self):
-        """Call every Frame. Override for custom logic."""
+        """Update entity state. Override in subclasses."""
         pass
 
-    def draw(self, screen):
-        """Draws Entity as Rect."""
-        pygame.draw.rect(screen, self.set_color(), (self.x, self.y, self.width, self.height))
+    def draw(self, screen: pygame.Surface):
+        """
+        Draw entity on screen.
 
-    def get_rect(self):
-        """Returns a rectangle for collision checks."""
-        return pygame.Rect(self.x, self.y, self.width, self.height)
+        Args:
+            screen: Pygame surface to draw on
+        """
+        pygame.draw.rect(screen, self.get_color(),
+                         (self.get_x(), self.get_y(),
+                          self.get_width(), self.get_height()))
 
-    def check_collision(self, other):
-        """Checks whether this entity collides with another."""
-        return self.get_rect().colliderect(other.get_rect())
+    def check_collision(self, other) -> bool:
+        """
+        Check collision with another entity.
 
-    def take_damage(self, amount):
-        self.health
+        Args:
+            other: Another Entity object
+
+        Returns:
+            True if entities collide, False otherwise
+        """
+        return (self.get_x() < other.get_x() + other.get_width() and
+                self.get_x() + self.get_width() > other.get_x() and
+                self.get_y() < other.get_y() + other.get_height() and
+                self.get_y() + self.get_height() > other.get_y())
