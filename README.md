@@ -26,6 +26,22 @@ Build a simple top-down RPG to showcase:
 - Multiple NPC instances rendered on screen
 - Attributes: speed, health
 
+### Phase 1.3.1 - Encapsulation Refactoring
+**Branch:** `refactors/encapsulation`
+
+Applied strict OOP encapsulation principles:
+- **Getter/Setter Pattern**: All class attributes accessed via methods (`get_x()`, `set_x()`)
+- **Config Class**: Game constants wrapped in configuration class with getters
+- **Validation**: Health clamped to 0-100, speed validated >= 0
+- **Consistency**: Umschulung-style encapsulation (no `_` prefix) applied project-wide
+
+**Modified Files:**
+- `config.py` - Converted to Config class with singleton pattern
+- `entities/entity.py` - Added getter/setter methods for all attributes
+- `entities/character.py` - Refactored movement and boundaries with getters/setters
+- `entities/npc.py` - Chase AI uses encapsulation pattern
+- `main.py` - All direct attribute access replaced with method calls
+
 ## Installation
 
 ### Requirements
