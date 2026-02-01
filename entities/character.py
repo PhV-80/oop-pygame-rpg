@@ -7,8 +7,8 @@ from entities.entity import Entity
 class Character(Entity):
     """Player character controlled by keyboard input (WASD or Arrow keys)."""
 
-    def __init__(self, x: int, y: int, width: int, height: int, color):
-        super().__init__(x, y, width, height, color)
+    def __init__(self, x: int, y: int, width: int, height: int, color: tuple[int, int, int], damage: int):
+        super().__init__(x, y, width, height, color, damage)
         self.speed = 5  # Movement speed in pixels per frame
 
     def update(self):

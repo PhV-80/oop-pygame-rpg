@@ -12,11 +12,11 @@ pygame.display.set_caption("OOP PyGame RPG")
 clock = pygame.time.Clock()
 
 # Create player character (green rectangle, spawns at window center)
-player = Character(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2, 40, 40, COLOR_PLAYER)
+player = Character(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2, 40, 40, COLOR_PLAYER, DAMAGE_PLAYER)
 
 # Create NPCs (red rectangles, will chase player)
-npc1 = NPC(100, 100, 30, 30, COLOR_NPC)
-npc2 = NPC(600, 400, 30, 30, COLOR_NPC)
+npc1 = NPC(100, 100, 30, 30, COLOR_NPC, DAMAGE_NPC)
+npc2 = NPC(600, 400, 30, 30, COLOR_NPC, DAMAGE_NPC)
 
 # Main game loop
 running = True
