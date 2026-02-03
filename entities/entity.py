@@ -92,3 +92,8 @@ class Entity:
                 self.get_x() + self.get_width() > other.get_x() and
                 self.get_y() < other.get_y() + other.get_height() and
                 self.get_y() + self.get_height() > other.get_y())
+
+    def clamp_to_bounds(self):
+        """Clamp entity to bounds."""
+        self.x = min(self.get_x(), self.get_x() + self.get_width())
+        self.y = min(self.get_y(), self.get_y() + self.get_height())

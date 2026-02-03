@@ -1,12 +1,12 @@
 import pygame
 from config import config
-from entities.entity import Entity
+from .entity import Entity
 
 
 class Character(Entity):
     """Player character controlled by keyboard input (WASD or Arrow keys)."""
 
-    def __init__(self, x: int, y: int, width: int, height: int, color: tuple):
+    def __init__(self, x, y, width, height, color):
         super().__init__(x, y, width, height, color)
         self.speed = 5  # Movement speed in pixels per frame
         self.health = 100  # Hit points

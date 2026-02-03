@@ -1,11 +1,11 @@
 import pygame
-from entities.entity import Entity
+from .entity import Entity
 
 
 class NPC(Entity):
     """Non-player character (enemy). AI: Chase player."""
 
-    def __init__(self, x: int, y: int, width: int, height: int, color: tuple):
+    def __init__(self, x, y, width, height, color):
         super().__init__(x, y, width, height, color)
         self.speed = 3  # Movement speed (slower than player)
         self.health = 100  # Hit points
