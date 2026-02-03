@@ -1,5 +1,6 @@
 import pygame
 
+from config import config
 
 class Entity:
     """Base class for all game objects with encapsulated attributes."""

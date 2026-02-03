@@ -21,7 +21,7 @@ font = pygame.font.Font(None, 36)
 player = Character(50, 50, 50, 50, config.get_color_green())
 
 # Create NPCs
-npc1 = NPC(300, 200, 50, 50, config.get_color_red())
+npc1 = WanderNPC(300, 200, 50, 50, config.get_color_red())
 npc2 = WanderNPC(500, 400, 50, 50, config.get_color_red())
 
 # Game loop
@@ -37,7 +37,7 @@ while running:
     if not game_over:
         # Update entities
         player.update()
-        npc1.update(player.get_x(), player.get_y())
+        npc1.update()
         npc2.update()
 
         # Check collisions (using getter methods)
