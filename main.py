@@ -2,6 +2,7 @@ import pygame
 from config import config
 from entities.character import Character
 from entities.npc import NPC
+from entities.wander_npc import WanderNPC
 
 # Initialize Pygame
 pygame.init()
@@ -21,7 +22,7 @@ player = Character(50, 50, 50, 50, config.get_color_green())
 
 # Create NPCs
 npc1 = NPC(300, 200, 50, 50, config.get_color_red())
-npc2 = NPC(500, 400, 50, 50, config.get_color_red())
+npc2 = WanderNPC(500, 400, 50, 50, config.get_color_red())
 
 # Game loop
 running = True
@@ -37,7 +38,7 @@ while running:
         # Update entities
         player.update()
         npc1.update(player.get_x(), player.get_y())
-        npc2.update(player.get_x(), player.get_y())
+        npc2.update()
 
         # Check collisions (using getter methods)
         if player.check_collision(npc1) or player.check_collision(npc2):

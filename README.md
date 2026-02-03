@@ -81,7 +81,7 @@ Entity (Base)
 ```
 
 ## Roadmap
-###Phase 1.3 Part 2: NPC AI
+### Phase 1.3 Part 2: NPC AI
 * NPCs follow the player
 * Simple pathfinding logic
 
