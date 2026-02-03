@@ -16,53 +16,53 @@ class Entity:
             height: Height of the entity (pixels)
             color: RGB tuple (r, g, b)
         """
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.color = color
+        self._x = x
+        self._y = y
+        self._width = width
+        self._height = height
+        self._color = color
 
     # Getter methods
     def get_x(self) -> int:
         """Get horizontal position."""
-        return self.x
+        return self._x
 
     def get_y(self) -> int:
         """Get vertical position."""
-        return self.y
+        return self._y
 
     def get_width(self) -> int:
         """Get entity width."""
-        return self.width
+        return self._width
 
     def get_height(self) -> int:
         """Get entity height."""
-        return self.height
+        return self._height
 
     def get_color(self) -> tuple:
         """Get entity color."""
-        return self.color
+        return self._color
 
     # Setter methods
     def set_x(self, x: int):
         """Set horizontal position."""
-        self.x = x
+        self._x = x
 
     def set_y(self, y: int):
         """Set vertical position."""
-        self.y = y
+        self._y = y
 
     def set_width(self, width: int):
         """Set entity width."""
-        self.width = width
+        self._width = width
 
     def set_height(self, height: int):
         """Set entity height."""
-        self.height = height
+        self._height = height
 
     def set_color(self, color: tuple):
         """Set entity color."""
-        self.color = color
+        self._color = color
 
     def update(self):
         """Update entity state. Override in subclasses."""
@@ -96,5 +96,5 @@ class Entity:
 
     def clamp_to_bounds(self):
         """Clamp entity to bounds."""
-        self.x = min(self.get_x(), self.get_x() + self.get_width())
-        self.y = min(self.get_y(), self.get_y() + self.get_height())
+        self._x = min(self.get_x(), self.get_x() + self.get_width())
+        self._y = min(self.get_y(), self.get_y() + self.get_height())
