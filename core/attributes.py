@@ -1,6 +1,6 @@
 class Attributes:
 
-    def __init__(self, strength=10, dexterity=10, intelligence=10, wisdom=10, charisma=10, constitution=10):
+    def __init__(self, strength: int = 10, dexterity : int = 10, intelligence: int = 10, wisdom: int =10, charisma: int = 10, constitution: int = 10):
         """
         Erstellt Attribut-Set mit Validierung.
 
@@ -101,4 +101,9 @@ class Attributes:
         if attribute_name not in ["strength", "dexterity", "intelligence", "wisdom", "charisma", "constitution"]:
             raise ValueError(f"Unbekanntes Attribut: {attribute_name}")
 
-        attribute_value =
+        private_name = f"_{attribute_name}"
+        attribute_value = getattr(self, private_name)
+
+        modifier = (attribute_value - 10) // 2
+        return modifier
+
