@@ -32,8 +32,8 @@ class WanderNPC(NPC):
             self.direction_y = random.choice([-1, 0, 1])
             self.change_timer = 0
 
-        new_x = (self.get_x() + self.get_direction_x()) * self.get_speed()
-        new_y = (self.get_y() + self.get_direction_y()) * self.get_speed()
+        self.set_x(new_x)
+        self.set_y(new_y)
 
         if new_x > self.get_x():
             new_x = new_x - self.get_x()
