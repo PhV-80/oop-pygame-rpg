@@ -1,8 +1,4 @@
 from core.attributes import Attributes
+from core.dice import DiceRoller
 
-char = Attributes(strength=14, dexterity=8, intelligence=16)
-
-print(char.get_modifier('strength'))
-print(char.get_modifier('dexterity'))
-print(char.get_modifier('intelligence'))
-print(char.get_modifier('invalid'))
+w20 = DiceRoller.roll_d20(modifier=3)
