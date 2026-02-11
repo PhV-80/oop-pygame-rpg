@@ -74,16 +74,26 @@ class DiceRoller:
     def roll_d6(count: int = 1, modifier: int = 0) :
         """Würfelt W6 für Schaden"""
 
+        roll = 0
         rolls = []
         for i in range(count):
-            rolls.append(random.randint(1, 6))
+            if range == 1:
+                roll = random.randint(1, 6)
+            else:
+                rolls.append(random.randint(1, 6))
 
         roll_sum = sum(rolls)
         total = roll_sum + modifier
 
         if modifier == 0:
-            detail = f"{count}d6: {rolls} = {total}"
+            if roll == 1:
+                detail = f"{count}d6: {roll} = {roll_sum}"
+            else:
+                detail = f"{count}d6: {rolls} = {roll_sum}"
         else:
-            detail = f"{count}d6: {rolls} + {modifier} = {total}"
+            if roll == 1:
+                detail = f"{count}d6: {roll} + {modifier} = {total}"
+            else:
+                detail = f"{count}d6: {rolls} + {modifier} = {total}"
 
         return (total, detail)

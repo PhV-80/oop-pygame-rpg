@@ -87,11 +87,13 @@ class Attributes:
         return self._constitution
 
     def set_strength(self, value: int):
+        """Setzt Stärke-Wert"""
         if value < 1 or value > 20:
             raise ValueError(f"Strength muss zwischen 1-20 liegen, erhielt: {value}")
         self._strength = value
 
     def set_dexterity(self, value: int):
+        """Setzt Geschick-Wert"""
         if value < 1 or value > 20:
             raise ValueError(f"Dexterity muss zwischen 1-20 liegen, erhielt: {value}")
         self._dexterity = value
@@ -102,16 +104,19 @@ class Attributes:
         self._intelligence = value
 
     def set_wisdom(self, value: int):
+        """Setzt Weisheit-Wert"""
         if value < 1 or value > 20:
             raise ValueError(f"Wisdom muss zwischen 1-20 liegen, erhielt: {value}")
         self._wisdom = value
 
     def set_charisma(self, value: int):
+        """Setzt Charisma-Wert"""
         if value < 1 or value > 20:
             raise ValueError(f"Charisma muss zwischen 1-20 liegen, erhielt: {value}")
         self._charisma = value
 
     def set_constitution(self, value: int):
+        """Setzt Konstitution-Wert"""
         if value < 1 or value > 20:
             raise ValueError(f"Constitution muss zwischen 1-20 liegen, erhielt: {value}")
         self._constitution = value
@@ -138,3 +143,10 @@ class Attributes:
         modifier = (attribute_value - 10) // 2
         return modifier
 
+    def __str__(self) -> str:
+        return (f"STR:{self._strength}({self.get_modifier('strength'):+d}), "
+                f"DEX:{self._dexterity}({self.get_modifier('dexterity'):+d}), "
+                f"INT:{self._intelligence}({self.get_modifier('intelligence'):+d}), "
+                f"WIS:{self._wisdom}({self.get_modifier('wisdom'):+d}), "
+                f"CHA:{self._charisma}({self.get_modifier('charisma'):+d}), "
+                f"CON:{self._constitution}({self.get_modifier('constitution'):+d})")
