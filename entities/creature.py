@@ -71,7 +71,7 @@ class Creature(Entity):
         # HP erhöhen
         self._current_hp += amount
         # Clamp zu max_hp
-        self._current_hp = max(self._current_hp, self._max_hp)
+        self._current_hp = min(self._max_hp, self._current_hp)
 
     def is_alive(self) -> bool:
         """Prüft, ob Creature noch lebt."""
