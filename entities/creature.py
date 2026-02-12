@@ -26,12 +26,16 @@ class Creature(Entity):
 
     def get_hp(self) -> int:
         """Gibt aktuelle HP zurück."""
-        pass
+        return self._current_hp
 
     def get_max_hp(self) -> int:
         """Gibt maximale HP zurück."""
+        return self._max_hp
+
+    def get_attributes(self) -> Attributes:
+        """Gibt Attributes-Objekt zurück."""
         # TODO
-        pass
+        return self._attributes
 
     def take_damage(self, amount: int):
         """
@@ -43,10 +47,13 @@ class Creature(Entity):
         Raises:
             ValueError: Bei negativem amount
         """
-        # TODO: Validierung
-        # TODO: HP reduzieren
-        # TODO: Clamp zu 0
-        pass
+        # Validierung
+        if amount < 0:
+            raise ValueError(f"Schaden muss >= 0 sein, erhielt: {amount}")
+        # HP reduzieren
+        self._current_hp -= amount
+        # Clamp zu 0
+        self._current_hp = max(0, self._current_hp)
 
     def heal(self, amount: int):
         """
@@ -58,22 +65,24 @@ class Creature(Entity):
         Raises:
             ValueError: Bei negativem amount
         """
-        # TODO: Validierung
-        # TODO: HP erhöhen
-        # TODO: Clamp zu max_hp
-        pass
+        # Validierung
+        if amount < 0:
+            raise ValueError(f"Heilung muss >= 0 sein, erhielt: {amount}")
+        # HP erhöhen
+        self._current_hp += amount
+        # Clamp zu max_hp
+        self._current_hp = max(self._current_hp, self._max_hp)
 
     def is_alive(self) -> bool:
         """Prüft, ob Creature noch lebt."""
-        # TODO
-        pass
-
-    def get_attributes(self) -> Attributes:
-        """Gibt Attributes-Objekt zurück."""
-        # TODO
-        pass
+        if self._current_hp <= 0:
+            return False
+        return True
 
     def __str__(self) -> str:
         """Debug-String."""
         # TODO: "Creature at (x,y): HP current/max, STR:X(+Y), DEX:X(+Y)"
+        return f"""
+        empty
+        """
         pass
