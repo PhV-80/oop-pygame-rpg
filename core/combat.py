@@ -22,19 +22,18 @@ class Combat:
                 'defender_alive': bool  # Lebt Defender noch?
             }
         """
-        # PSEUDOCODE:
-        # 1. Base Damage berechnen: (Attack²) / Defense
         defender_defense = max(1, defender.get_defense())
         base_damage = (attacker.get_attack() ** 2) / defender_defense
-        # 2. Crit-Check: Random(1-100) <= Luck?
-        crit_check = Combat._check_crit(attacker.get_luck())
-        # 3. Wenn Crit: Base * 1.5
-        if crit_check:
-            crit_damage = base_damage * 1.5
-        # 4. Varianz anwenden: Base * Random(0.9, 1.1)
-        # 5. Minimum 1 Damage (außer Defense >> Attack)
-        # 6. defender.take_damage(final_damage)
-        # 7. Return dict mit Ergebnis
+        is_crit = Combat._check_crit(attacker.get_luck())
+        if is_crit:
+            base_damage = base_damage * 1.5
+        final_damage = Combat._calculate_variance(base_damage, (0.9, 1.1))
+        defender.take_damage(final_damage)
+        return {
+            'damage': final_damage,
+            'is_crit': is_crit,
+            'defender_alive': defender.is_alive()
+        }
     
     @staticmethod
     def magic_attack(attacker: Stats, defender: Stats, spell_power: int, mp_cost: int) -> dict:
@@ -56,12 +55,28 @@ class Combat:
         """
         # PSEUDOCODE:
         # 1. MP-Check: attacker.use_mp(mp_cost)
-        # 2. Wenn False: Return {'damage': 0, 'mp_used': False, ...}
-        # 3. Base Damage: (Magic_Attack * Spell_Power) / Magic_Defense
-        # 4. Varianz: Base * Random(0.95, 1.05)
-        # 5. Minimum 1 Damage
-        # 6. defender.take_damage(final_damage)
-        # 7. Return dict mit Ergebnis
+        if attacker.use_mp(mp_cost):
+            # 2. Wenn False: Return {'damage': 0, 'mp_used': False, ...}
+            if False:
+                return {
+                    'damage': 0,
+                    'mp_used': False,
+                    'defender_alive': defender.is_alive()
+                }
+            # 3. Base Damage: (Magic_Attack * Spell_Power) / Magic_Defense
+            else:
+                base_damage = (attacker.get_magic_attack() * spell_power) / defender.get_magic_defense()
+                # 4. Varianz: Base * Random(0.95, 1.05)
+                # 5. Minimum 1 Damage
+                final_damage = Combat._calculate_variance(base_damage, (0.95, 1.05))
+                # 6. defender.take_damage(final_damage)
+                defender.take_damage(final_damage)
+                # 7. Return dict mit Ergebnis
+                return {
+                    'damage': final_damage,
+                    'mp_used': True,
+                    'defender_alive': defender.is_alive()
+                }
     
     @staticmethod
     def _calculate_variance(base_damage: float, variance_range: tuple) -> int:
