@@ -53,30 +53,23 @@ class Combat:
                 'defender_alive': bool
             }
         """
-        # PSEUDOCODE:
-        # 1. MP-Check: attacker.use_mp(mp_cost)
-        if attacker.use_mp(mp_cost):
-            # 2. Wenn False: Return {'damage': 0, 'mp_used': False, ...}
-            if False:
-                return {
-                    'damage': 0,
-                    'mp_used': False,
-                    'defender_alive': defender.is_alive()
-                }
-            # 3. Base Damage: (Magic_Attack * Spell_Power) / Magic_Defense
-            else:
-                base_damage = (attacker.get_magic_attack() * spell_power) / defender.get_magic_defense()
-                # 4. Varianz: Base * Random(0.95, 1.05)
-                # 5. Minimum 1 Damage
-                final_damage = Combat._calculate_variance(base_damage, (0.95, 1.05))
-                # 6. defender.take_damage(final_damage)
-                defender.take_damage(final_damage)
-                # 7. Return dict mit Ergebnis
-                return {
-                    'damage': final_damage,
-                    'mp_used': True,
-                    'defender_alive': defender.is_alive()
-                }
+
+        if not attacker.use_mp(mp_cost):
+            return {
+                'damage': 0,
+                'mp_used': False,
+                'defender_alive': defender.is_alive()
+            }
+
+        defender_magic_defense = max(1, defender.get_defense())
+        base_damage = (attacker.get_magic_attack() * spell_power) / defender_magic_defense
+        final_damage = Combat._calculate_variance(base_damage, (0.95, 1.05))
+        defender.take_damage(final_damage)
+        return {
+            'damage': final_damage,
+            'mp_used': True,
+            'defender_alive': defender.is_alive()
+        }
     
     @staticmethod
     def _calculate_variance(base_damage: float, variance_range: tuple) -> int:
