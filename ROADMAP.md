@@ -121,6 +121,23 @@
 
 ---
 
-## Aktuelle Priorität
-**Fokus:** Phase 1 (Regelwerk)
-**Nächster Schritt:** `core/attributes.py` implementieren
+## Phase 8: JRPG System Implementation (Current)
+
+**Ziel:** D&D-System durch JRPG-Mechaniken ersetzen
+**Status:** In Progress (13.02.2026)
+
+**Milestones:**
+
+- [ ] `core/jrpg_stats.py` - HP, MP, Attack, Defense, Speed, Luck
+- [ ] `core/jrpg_combat.py` - Formula-based damage calculation
+- [ ] `core/turn_system.py` - Speed-based Turn-Order
+- [ ] `core/level_system.py` - XP, Level-Ups, Stat-Growth curves
+- [ ] `core/abilities.py` - MP-based skills/spells
+- [ ] `core/status_effects.py` - Poison, Sleep, Paralysis, etc.
+- [ ] Refactor entities/character.py for JRPG stats
+- [ ] Refactor entities/player.py
+- [ ] UI: MP-Bars, Turn-Order display
+
+**Geschätzte Zeit:** 15-20h
+**Timeline:** 13.02. - 19.02.2026
+**Demo:** Work-in-Progress für Vorstellungsgespräch (20.02.)

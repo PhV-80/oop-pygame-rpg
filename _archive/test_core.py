@@ -1,6 +1,6 @@
-from core.attributes import Attributes
-from core.dice import DiceRoller
-from core.combat import CombatSystem
+from _archive.attributes import Attributes
+from _archive.combat import CombatSystem
+from _archive.dice import DiceRoller
 
 print("=== Attributes Test ===")
 char = Attributes(strength=14, dexterity=8)

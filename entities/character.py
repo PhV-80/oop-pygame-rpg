@@ -1,13 +1,13 @@
-from core.attributes import Attributes
+from _archive.attributes import Attributes
 from .entity import Entity
 
 
-class Creature(Entity):
+class Character(Entity):
     """Lebewesen mit Attributen und HP-System."""
 
     def __init__(self, x: int, y: int, width: int, height: int, color: tuple, attributes: Attributes):
         """
-        Erstellt Creature mit Position und Stats.
+        Erstellt Character mit Position und Stats.
 
         Args:
             x: Horizontal-Position
@@ -74,14 +74,14 @@ class Creature(Entity):
         self._current_hp = min(self._max_hp, self._current_hp)
 
     def is_alive(self) -> bool:
-        """Prüft, ob Creature noch lebt."""
+        """Prüft, ob Character noch lebt."""
         if self._current_hp <= 0:
             return False
         return True
 
     def __str__(self) -> str:
         """Debug-String."""
-        # TODO: "Creature at (x,y): HP current/max, STR:X(+Y), DEX:X(+Y)"
+        # TODO: "Character at (x,y): HP current/max, STR:X(+Y), DEX:X(+Y)"
         return f"""
         empty
         """

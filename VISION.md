@@ -46,3 +46,31 @@ Ein 2D-RPG mit dynamischer, emergenter Story basierend auf DSA/D&D-Regelwerk.
 - Kenshi (Sandbox)
 - Classic CRPGs (Baldur's Gate, Planescape)
 - DSA/D&D Regelwerke
+
+## Development Strategy
+
+### Phase 1 (Completed): D&D Prototype
+
+- **Regelwerk:** D&D 5e-inspired (Attributes, W20-System, Modifiers)
+- **Zweck:** Rapid prototyping, bekannte Mechaniken
+- **Status:** Functional, archived in `_archive/dnd_prototype/`
+
+### Phase 2 (Current): JRPG System Refactoring
+
+- **Ziel-Regelwerk:** JRPG-Style (Final Fantasy, Mystic Quest)
+- **Features:**
+    - Stats: HP, MP, Attack, Defense, Magic Attack, Magic Defense, Speed, Luck
+    - Combat: Formula-based (no dice), Turn-Order-System
+    - MP-System für Abilities/Magic
+    - XP + Level-System mit Auto-Stat-Growth
+    - Status Effects (Poison, Sleep, Paralysis)
+- **Architektur:** Core-Module austauschbar (modular design)
+
+### Begründung für D&D Prototype
+
+D&D-Mechaniken wurden für Prototyp gewählt:
+
+1. Gut dokumentiert, schnelle Implementierung
+2. Zeigt Regelwerk-Architektur-Prinzipien
+3. Funktioniert als Referenz-Implementation
+4. **Erkenntniss:** Ziel ist JRPG-System → Refactoring gestartet
